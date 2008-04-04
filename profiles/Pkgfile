@@ -1,0 +1,24 @@
+# Description: Profile utilities for django
+# URL: http://code.google.com/p/django-profiles/
+# Maintainer: Lucas Hazel, lucas at die dot net dot au
+# Depends on: django
+
+name=profiles
+version=svn
+release=1
+source=()
+
+build() {
+	cd $PKGMK_SOURCE_DIR
+	if [ -d $name ]; then
+		(cd $name; svn co)
+	else
+		svn checkout http://django-profiles.googlecode.com/svn/trunk/ $name
+	fi
+	svn export $name $SRC/$name
+	cd $SRC/$name
+	
+	python setup.py install --root=$PKG
+	
+	find $PKG -name '*.egg-info' | xargs rm
+}
