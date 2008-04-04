@@ -1,0 +1,15 @@
+# Description: Python implementation of YAML
+# URL: http://pyyaml.org
+# Maintainer: Lucas Hazel, lucas at die dot net dot au
+# Depends on: python
+
+name=pyyaml
+distname=PyYAML
+version=3.05
+release=1
+source=(http://pyyaml.org/download/pyyaml/$distname-$version.tar.gz)
+
+build() {
+	cd $distname-$version
+	python setup.py install --root=$PKG
+}
