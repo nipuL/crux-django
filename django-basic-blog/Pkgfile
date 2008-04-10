@@ -1,0 +1,20 @@
+# Description: Django bloggin application
+# URL: http://code.google.com/p/django-basic-blog/
+# Maintainer: Lucas Hazel, lucas at die dot net dot au
+# Depends on: django-tagging, markdown
+
+name=django-basic-blog
+version=svn
+release=1
+source=()
+
+build() {
+	cd $PKGMK_SOURCE_DIR
+	if [ -d $name ]; then
+		(cd $name; svn up)
+	else
+		svn checkout http://$name.googlecode.com/svn/trunk/ $name
+	fi
+	install -d $PKG/usr/lib/python2.5/site-packages/
+	svn export $name $PKG/usr/lib/python2.5/site-packages/blog
+}
