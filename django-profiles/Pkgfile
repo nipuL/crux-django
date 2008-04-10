@@ -3,19 +3,20 @@
 # Maintainer: Lucas Hazel, lucas at die dot net dot au
 # Depends on: django
 
-name=profiles
+name=django-profiles
+distname=profiles
 version=svn
 release=1
 source=()
 
 build() {
 	cd $PKGMK_SOURCE_DIR
-	if [ -d $name ]; then
-		(cd $name; svn co)
+	if [ -d $distname ]; then
+		(cd $distname; svn up)
 	else
-		svn checkout http://django-profiles.googlecode.com/svn/trunk/ $name
+		svn checkout http://django-profiles.googlecode.com/svn/trunk/ $distname
 	fi
-	svn export $name $SRC/$name
+	svn export $distname $SRC/$name
 	cd $SRC/$name
 	
 	python setup.py install --root=$PKG
