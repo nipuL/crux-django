@@ -1,0 +1,29 @@
+# Description: Tagging utilities for django
+# URL: http://code.google.com/p/django-tagging/
+# Maintainer: Lucas Hazel, lucas at die dot net dot au
+# Depends on: django
+
+name=django-tagging
+version=svn
+release=1
+source=()
+
+build() {
+	cd $PKGMK_SOURCE_DIR
+	if [ -d $name ]; then
+		(cd $name; svn up)
+	else
+		svn checkout http://$name.googlecode.com/svn/trunk/ $name
+	fi
+	svn export $name $SRC/$name
+	cd $SRC/$name
+	
+	VERSION="`grep VERSION tagging/__init__.py`"
+	echo $VERSION > version.py
+	
+	sed -i "s/^version_tuple.*/from version import VERSION as version_tuple/" setup.py
+		
+	python setup.py install --root=$PKG
+	
+	find $PKG -name '*.egg-info' | xargs rm
+}
