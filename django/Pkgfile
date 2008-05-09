@@ -5,7 +5,7 @@
 
 name=django
 version=svn
-release=3
+release=4
 source=()
 
 build() {
