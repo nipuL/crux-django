@@ -3,7 +3,7 @@
 # Maintainer: Lucas Hazel, lucas at die dot net dot au
 # Depends on: django-tagging, markdown
 
-name=django-basic-blog
+name=django-basic-apps
 version=svn
 release=1
 source=()
@@ -13,8 +13,8 @@ build() {
 	if [ -d $name ]; then
 		(cd $name; svn up)
 	else
-		svn checkout http://$name.googlecode.com/svn/trunk/ $name
+		svn checkout http://django-basic-apps.googlecode.com/svn/trunk/ $name
 	fi
 	install -d $PKG/usr/lib/python2.5/site-packages/
-	svn export $name $PKG/usr/lib/python2.5/site-packages/blog
+	svn export $name $PKG/usr/lib/python2.5/site-packages/basic
 }
